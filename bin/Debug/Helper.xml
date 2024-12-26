@@ -1,0 +1,864 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Helper</name>
+    </assembly>
+    <members>
+        <member name="T:Helper.CheckSum">
+            <summary>
+            Contains methods for creating SHA256 checksums 
+            </summary>
+        </member>
+        <member name="M:Helper.CheckSum.Get(System.Object[])">
+            <summary>
+            Returns an byte array containing a SHA256 checksum created from the supplied object array
+            </summary>
+        </member>
+        <member name="M:Helper.CheckSum.ToByteArray(System.Object[])">
+            <summary>
+            Returns an byte array from an object array
+            </summary>
+        </member>
+        <member name="M:Helper.CheckSum.AppendTwoByteArrays(System.Byte[],System.Byte[])">
+            <summary>
+            Append two byte arrays
+            </summary>
+        </member>
+        <member name="M:Helper.CheckSum.WriteByteArray(System.Byte[])">
+            <summary>
+            Writes the given byte array to Console
+            </summary>
+        </member>
+        <member name="T:Helper.SQLApp">
+            <summary>
+            Manages and uses a SQL connection
+            </summary>
+        </member>
+        <member name="T:Helper.SQLApp.DbType">
+            <summary>
+            Types of SQL databases
+            </summary>
+        </member>
+        <member name="F:Helper.SQLApp.DbType.SQLServer">
+            <summary>
+            SQL Server
+            </summary>
+        </member>
+        <member name="F:Helper.SQLApp.DbType.MySQL">
+            <summary>
+            MySQL (not implemented)
+            </summary>
+        </member>
+        <member name="F:Helper.SQLApp.DbType.MariaDB">
+            <summary>
+            MariaDB (not implemented)
+            </summary>
+        </member>
+        <member name="F:Helper.SQLApp.DbType.Oracle">
+            <summary>
+            Oracle (not implemented)
+            </summary>
+        </member>
+        <member name="P:Helper.SQLApp.Connection">
+            <summary>
+            The SqlConnection
+            </summary>
+        </member>
+        <member name="P:Helper.SQLApp.DataAdaptor">
+            <summary>
+            The SqlDataAdapter
+            </summary>
+        </member>
+        <member name="P:Helper.SQLApp.DataBaseName">
+            <summary>
+            The name of the data base
+            </summary>
+        </member>
+        <member name="F:Helper.SQLApp.myDBtype">
+            <summary>
+            The type of the data base
+            </summary>
+        </member>
+        <member name="M:Helper.SQLApp.#ctor(System.String,System.String,Helper.SQLApp.DbType)">
+            <summary>
+            Constructor for connection the the database without credentials
+            </summary>
+            <param name="server">Name of the server</param>
+            <param name="database">Name of the database</param>
+            <param name="dBtype">The type of the database</param>
+        </member>
+        <member name="M:Helper.SQLApp.#ctor(System.String,System.String,Helper.SQLApp.DbType,Helper.LogFile)">
+            <summary>
+            Constructor for connection the the database without credentials
+            </summary>
+            <param name="server">Name of the server</param>
+            <param name="database">Name of the database</param>
+            <param name="dBtype">The type of the database</param>
+            <param name="logFile">A logfile</param>
+        </member>
+        <member name="M:Helper.SQLApp.#ctor(System.String,System.String,System.String,System.String,Helper.SQLApp.DbType)">
+            <summary>
+            Constructor for connection the the database
+            </summary>
+            <param name="server">Name of the server</param>
+            <param name="database">Name of the database</param>
+            <param name="user">User name </param>
+            <param name="password">Password</param>
+            <param name="dBtype">The type of the database</param>
+        </member>
+        <member name="M:Helper.SQLApp.#ctor(System.String,System.String,System.String,System.String,Helper.SQLApp.DbType,Helper.LogFile)">
+            <summary>
+            Constructor for connection the the database
+            </summary>
+            <param name="server">Name of the server</param>
+            <param name="database">Name of the database</param>
+            <param name="user">User name </param>
+            <param name="password">Password</param>
+            <param name="dBtype">The type of the database</param>
+            <param name="logFile">A logfile</param>
+        </member>
+        <member name="M:Helper.SQLApp.Backup(System.String,System.String)">
+            <summary>
+            Initiate a database backup using a interim folder to store the backup
+            Name of backup file is generated as [databse name]_[timestamp].BAK
+            </summary>
+            <param name="foldername">The final folder for the backup file</param>
+            <param name="tempfoldername">The interim folder for the backup file</param>
+            <returns>The generated filename</returns>
+        </member>
+        <member name="M:Helper.SQLApp.Backup(System.String)">
+            <summary>
+            Initiate a database backup 
+            Name of backup file is generated as [databse name]_[timestamp].BAK
+            </summary>
+            <param name="foldername">The final folder for the backup file</param>
+            <returns>The generated filename</returns>
+        </member>
+        <member name="M:Helper.SQLApp.Restore(System.String)">
+            <summary>
+            Restores a backup file
+            Note: Will destroy the existing content of the database
+            </summary>
+            <param name="filename">The fully qualified name of the backup file to restore</param>
+        </member>
+        <member name="M:Helper.SQLApp.Log(System.String)">
+            <summary>
+            Write a message to the console and logfile
+            </summary>
+            <param name="message">The message</param>
+        </member>
+        <member name="M:Helper.SQLApp.Debug(System.String)">
+            <summary>
+            Write a debug message to the console and logfile
+            </summary>
+            <param name="message">The message</param>
+        </member>
+        <member name="M:Helper.SQLApp.Trace(System.Exception)">
+            <summary>
+            Write a stacktrace to the console and logfile
+            </summary>
+            <param name="e">Exception to trace</param>
+        </member>
+        <member name="M:Helper.SQLApp.CreateDataTable(System.String)">
+            <summary>
+            Create a DataTable from SQL
+            </summary>
+            <param name="SQL">SQL</param>
+            <returns>The resulting DataTable</returns>
+        </member>
+        <member name="M:Helper.SQLApp.CreateDataTable(System.String,System.String[])">
+            <summary>
+            Create a DataTable with predefined column names from SQL
+            </summary>
+            <param name="SQL">SQL</param>
+            <param name="colNames">Array with column names</param>
+            <returns>The resulting DataTable</returns>
+        </member>
+        <member name="M:Helper.SQLApp.CreateDataTable(System.String,System.Data.SqlDbType[],System.Object[])">
+            <summary>
+            Create a DataTable from SQL with parameters
+            </summary>
+            <param name="SQL">SQL</param>
+            <param name="pDbType">Array of data types for the parameters</param>
+            <param name="pValue">Array of values for the parameters</param>
+            <returns>The resulting DataTable</returns>
+        </member>
+        <member name="M:Helper.SQLApp.CreateDataTable(System.String,System.String[],System.Data.SqlDbType[],System.Object[])">
+            <summary>
+            Create a DataTable with predefined column names from SQL with parameters
+            </summary>
+            <param name="SQL">SQL</param>
+            <param name="colNames">Array with column names</param>
+            <param name="pDbType">Array of data types for the parameters</param>
+            <param name="pValue">Array of values for the parameters</param>
+            <returns>The resulting DataTable</returns>
+        </member>
+        <member name="M:Helper.SQLApp.Do(System.String)">
+            <summary>
+            Executes SQL
+            </summary>
+            <param name="SQL">SQL</param>
+            <returns>Number of records affected</returns>
+        </member>
+        <member name="M:Helper.SQLApp.Do(System.String,System.Data.SqlDbType[],System.Object[])">
+            <summary>
+            Executes SQL with parameters
+            </summary>
+            <param name="SQL">SQL</param>
+            <param name="pDbType">Array of data types for the parameters</param>
+            <param name="pValue">Array of values for the parameters</param>
+            <returns>Number of records affected</returns>
+        </member>
+        <member name="M:Helper.SQLApp.Get(System.String)">
+            <summary>
+            Executes SQL and returns the first column of the first record
+            </summary>
+            <param name="SQL">SQL</param>
+            <returns>The first value encountered</returns>
+        </member>
+        <member name="M:Helper.SQLApp.Get(System.String,System.Object)">
+            <summary>
+            Executes SQL and returns the first column of the first record
+            Returns a default value if no record was found
+            </summary>
+            <param name="SQL">SQL</param>
+            <param name="defaultValue">Default value</param>
+            <returns>The first value encountered or default value</returns>
+        </member>
+        <member name="M:Helper.SQLApp.Get(System.String,System.Data.SqlDbType[],System.Object[])">
+            <summary>
+            Executes SQL with parameters and returns the first column of the first record
+            </summary>
+            <param name="SQL"></param>
+            <param name="pDbType">Array of data types for the parameters</param>
+            <param name="pValue">Array of values for the parameters</param>
+            <returns>The first value encountered</returns>
+        </member>
+        <member name="M:Helper.SQLApp.Get(System.String,System.Object,System.Data.SqlDbType[],System.Object[])">
+            <summary>
+            Executes SQL with parameters and returns the first column of the first record
+            Returns a default value if no record was found
+            </summary>
+            <param name="SQL"></param>
+            <param name="defaultValue">Default value</param>
+            <param name="pDbType">Array of data types for the parameters</param>
+            <param name="pValue">Array of values for the parameters</param>
+            <returns>The first value encountered or default value</returns>
+        </member>
+        <member name="M:Helper.SQLApp.CreateReader(System.String)">
+            <summary>
+            Executes SQL and returns a SqlDataReader
+            </summary>
+            <param name="SQL"></param>
+            <returns>The resulting SqlDataReader</returns>
+        </member>
+        <member name="M:Helper.SQLApp.CreateReader(System.String,System.Data.SqlDbType[],System.Object[])">
+            <summary>
+            Executes SQL and returns a SqlDataReader
+            </summary>
+            <param name="SQL"></param>
+            <param name="pDbType">Array of data types for the parameters</param>
+            <param name="pValue">Array of values for the parameters</param>
+            <returns>The resulting SqlDataReader</returns>
+        </member>
+        <member name="M:Helper.SQLApp.PrepareSqlCommand(System.String,System.Data.SqlDbType[],System.Object[])">
+            <summary>
+            Prepares a SqlCommand from a SQL with paraneters
+            </summary>
+            <param name="SQL">SQL</param>
+            <param name="pDbType">Array of data types for the parameters</param>
+            <param name="pValue">Array of values for the parameters</param>
+            <returns>The resulting SqlCommand</returns>
+        </member>
+        <member name="M:Helper.SQLApp.GetDataType(System.String,System.String,System.String,System.String)">
+            <summary>
+            Exmines the data type of a column in the database
+            </summary>
+            <param name="database">Database name</param>
+            <param name="schema">Schema name</param>
+            <param name="table">Table name</param>
+            <param name="column">Column name</param>
+            <returns>The datatype</returns>
+        </member>
+        <member name="M:Helper.SQLApp.GetNullable(System.String,System.String,System.String,System.String)">
+            <summary>
+            Exmines the nullability a column in the database
+            </summary>
+            <param name="database">Database name</param>
+            <param name="schema">Schema name</param>
+            <param name="table">Table name</param>
+            <param name="column">Column name</param>
+            <returns>The nullability</returns>
+        </member>
+        <member name="M:Helper.SQLApp.PutFile(System.String,System.Guid,System.String,System.String,System.String,System.String,System.String)">
+            <summary>
+            Stores a file, ziped, in a database table
+            The named fileDataColumn must be VARBINARY(MAX)
+            UpdWithFile updates an existing record "...WHERE current_fl=1"
+            </summary>
+            <param name="filePath">Fully qualified path + file name</param>
+            <param name="guid">Unique id</param>
+            <param name="fileName">Only file name</param> 
+            <param name="tableName">Database table to store file</param>
+            <param name="guidColumn">Database column to store unique id</param>
+            <param name="fileNameColumn">Database column to store file name</param>
+            <param name="fileDataColumn">Database column to store file</param>
+            <returns>Checksum of zip</returns>
+        </member>
+        <member name="M:Helper.SQLApp.PutFile(System.String,System.Int32,System.String,System.String,System.String,System.String,System.String)">
+            <summary>
+            Stores a file, ziped, in a database table
+            The named fileDataColumn must be VARBINARY(MAX)
+            UpdWithFile updates an existing record "...WHERE current_fl=1"
+            </summary>
+            <param name="filePath">Fully qualified path + file name</param>
+            <param name="sk">Unique id</param>
+            <param name="fileName">Only file name</param> 
+            <param name="tableName">Database table to store file</param>
+            <param name="skColumn">Database column to store unique id</param>
+            <param name="fileNameColumn">Database column to store file name</param>
+            <param name="fileDataColumn">Database column to store file</param>
+            <returns>Checksum of zip</returns>
+        </member>
+        <member name="M:Helper.SQLApp.VersionedPutFile(System.String,System.Guid,System.String,System.String,System.String,System.String,System.String)">
+            <summary>
+            Stores a file, ziped, in a database table in existing record "...WHERE current_fl=1"
+            The named fileDataColumn must be VARBINARY(MAX)
+            </summary>
+            <param name="filePath">Fully qualified path + file name</param>
+            <param name="guid">Unique id</param>
+            <param name="fileName">Only file name</param> 
+            <param name="tableName">Database table to store file</param>
+            <param name="guidColumn">Database column to store unique id</param>
+            <param name="fileNameColumn">Database column to store file name</param>
+            <param name="fileDataColumn">Database column to store file</param>
+            <returns>Checksum of zip</returns>
+        </member>
+        <member name="M:Helper.SQLApp.VersionedPutFile(System.String,System.Int32,System.String,System.String,System.String,System.String,System.String)">
+            <summary>
+            Stores a file, ziped, in a database table in existing record "...WHERE current_fl=1"
+            The named fileDataColumn must be VARBINARY(MAX)
+            </summary>
+            <param name="filePath">Fully qualified path + file name</param>
+            <param name="sk">Unique id</param>
+            <param name="fileName">Only file name</param> 
+            <param name="tableName">Database table to store file</param>
+            <param name="skColumn">Database column to store unique id</param>
+            <param name="fileNameColumn">Database column to store file name</param>
+            <param name="fileDataColumn">Database column to store file</param>
+            <returns>Checksum of zip</returns>
+        </member>
+        <member name="M:Helper.SQLApp.GetFile(System.String,System.Guid,System.String,System.String,System.String)">
+            <summary>
+            Retreives a ziped file from the database, unzips and saves it to disk 
+            </summary>
+            <param name="filePath">Fully qualified path + file name</param>
+            <param name="guid">Unique id</param>
+            <param name="tableName">Database table holding the file</param>
+            <param name="guidColumn">Database column holding unique id</param>
+            <param name="fileDataColumn">Database column holding the file</param>
+            <returns>Success status</returns>
+        </member>
+        <member name="M:Helper.SQLApp.GetFile(System.String,System.String,System.String,System.String,System.String)">
+            <summary>
+            Retreives a ziped file from the database, unzips and saves it to disk 
+            </summary>
+            <param name="filePath">Fully qualified path + file name</param>
+            <param name="fileName">Filename to identify record with the file in database table</param>
+            <param name="tableName">Database table holding the file</param>
+            <param name="fileNameColumn">Database column holding file name</param>
+            <param name="fileDataColumn">Database column holding the file</param>
+            <returns>Success status</returns>
+        </member>
+        <member name="M:Helper.SQLApp.GetFile(System.String,System.Int32,System.String,System.String,System.String)">
+            <summary>
+            Retreives a ziped file from the database, unzips and saves it to disk 
+            </summary>
+            <param name="filePath">Fully qualified path + file name</param>
+            <param name="sk">Unique id</param>
+            <param name="tableName">Database table holding the file</param>
+            <param name="skColumn">Database column holding unique id</param>
+            <param name="fileDataColumn">Database column holding the file</param>
+            <returns>Success status</returns>
+        </member>
+        <member name="M:Helper.SQLApp.VersionedGetFile(System.String,System.Guid,System.String,System.String,System.String)">
+            <summary>
+            Retreives a ziped file from the database, unzips and saves it to disk "...WHERE current_fl = 1"
+            </summary>
+            <param name="filePath">Fully qualified path + file name</param>
+            <param name="guid">Unique id</param>
+            <param name="tableName">Database table holding the file</param>
+            <param name="guidColumn">Database column holding unique id</param>
+            <param name="fileDataColumn">Database column holding the file</param>
+            <returns>Success status</returns>
+        </member>
+        <member name="M:Helper.SQLApp.VersionedGetFile(System.String,System.String,System.String,System.String,System.String)">
+            <summary>
+            Retreives a ziped file from the database, unzips and saves it to disk "...WHERE current_fl = 1"
+            </summary>
+            <param name="filePath">Fully qualified path + file name</param>
+            <param name="fileName">Filename to identify record with the file in database table</param>
+            <param name="tableName">Database table holding the file</param>
+            <param name="fileNameColumn">Database column holding file name</param>
+            <param name="fileDataColumn">Database column holding the file</param>
+            <returns>Success status</returns>
+        </member>
+        <member name="M:Helper.SQLApp.VersionedGetFile(System.String,System.Int32,System.String,System.String,System.String)">
+            <summary>
+            Retreives a ziped file from the database, unzips and saves it to disk "...WHERE current_fl = 1"
+            </summary>
+            <param name="filePath">Fully qualified path + file name</param>
+            <param name="sk"></param>sk (bigint) to identify record with the file in database table
+            <param name="tableName">Database table holding the file</param>
+            <param name="skColumn"></param>Name of database column to search for sk
+            <param name="fileDataColumn">Database column holding the file</param>
+            <returns>Success status</returns>
+        </member>
+        <member name="M:Helper.SQLApp.ParseStringForSQL(System.String)">
+            <summary>
+            Returns a string adapted to use as string value in SQL
+            </summary>
+            <param name="str"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Helper.SQLApp.GetSqlDbTypes(System.String,System.String,System.String,System.String[])">
+            <summary>
+            Exmines the data type of a the columns in the database
+            </summary>
+            <param name="database">Database name</param>
+            <param name="schema">Schema name</param>
+            <param name="table">Table name</param>
+            <param name="columns">Column names</param>
+            <returns>The datatypes</returns>
+        </member>
+        <member name="M:Helper.SQLApp.VersionedInsert(System.String,System.String,System.String,System.String,System.String[],System.String[],System.Object[])">
+            <summary>
+            
+            </summary>
+            <param name="database"></param>
+            <param name="schema"></param>
+            <param name="table"></param>
+            <param name="surrogatKey"></param>
+            <param name="uniqueKey"></param>
+            <param name="columnNames"></param>
+            <param name="columnValues"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Helper.SQLApp.SQLServer.ParseStringForSQL(System.String)">
+            <summary>
+            Returns a string adapted to use as string value in SQL
+            </summary>
+            <param name="str"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Helper.Dialog">
+            <summary>
+            Prepacked standard dialogs
+            </summary>
+        </member>
+        <member name="T:Helper.Dialog.Buttons">
+            <summary>
+            Enumeration of buttons
+            </summary>
+        </member>
+        <member name="F:Helper.Dialog.Buttons.None">
+            <summary>No button</summary>
+        </member>
+        <member name="F:Helper.Dialog.Buttons.Ok">
+            <summary>Ok button</summary>
+        </member>
+        <member name="F:Helper.Dialog.Buttons.Cancel">
+            <summary>Cancel button</summary>
+        </member>
+        <member name="F:Helper.Dialog.Buttons.Abort">
+            <summary>Abort button</summary>
+        </member>
+        <member name="F:Helper.Dialog.Buttons.Retry">
+            <summary>Retry button</summary>
+        </member>
+        <member name="F:Helper.Dialog.Buttons.Ignore">
+            <summary>Ignore button</summary>
+        </member>
+        <member name="F:Helper.Dialog.Buttons.Yes">
+            <summary>Yes button</summary>
+        </member>
+        <member name="F:Helper.Dialog.Buttons.No">
+            <summary>No button</summary>
+        </member>
+        <member name="F:Helper.Dialog.Buttons.Delete">
+            <summary>Delete button</summary>
+        </member>
+        <member name="M:Helper.Dialog.ShowMessage(System.String,System.String,Helper.Dialog.Buttons,System.Windows.Forms.Form)">
+            <summary>
+            Show a simple message and return user reply
+            </summary>
+        </member>
+        <member name="M:Helper.Dialog.Show(System.String,System.Windows.Forms.Panel,Helper.Dialog.Buttons,System.Windows.Forms.Form)">
+            <summary>
+            Show a panel and return user reply
+            </summary>
+        </member>
+        <member name="T:Helper.ListExtensions">
+            <summary>
+            Extensions for List
+            </summary>
+        </member>
+        <member name="M:Helper.ListExtensions.Clone``1(System.Collections.Generic.List{``0})">
+            <summary>
+            Returns a clone of the list
+            </summary>
+            <typeparam name="T">A type that inherits from the ICloneable interface.</typeparam>
+            <param name="listToClone">The list to be cloned</param>
+            <returns></returns>
+        </member>
+        <member name="T:Helper.IniFile">
+            <summary>
+            Manages a textfile holding value pairs, i.e. an ini-file
+            </summary>
+        </member>
+        <member name="P:Helper.IniFile.LogFile">
+            <summary>
+            Optional logfile for loging exceptions
+            </summary>
+        </member>
+        <member name="M:Helper.IniFile.#ctor(System.String)">
+            <summary>
+            Constructor opening the file
+            </summary>
+            <param name="fileName">The name of the file, will be created if missing</param>
+        </member>
+        <member name="M:Helper.IniFile.#ctor(System.String,System.Text.Encoding)">
+            <summary>
+            Constructor opening the file and setting the encoding used
+            </summary>
+            <param name="fileName"></param>
+            <param name="encoding"></param>
+        </member>
+        <member name="M:Helper.IniFile.Test">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Helper.IniFile.GetValueStr(System.String)">
+            <summary>
+            Read a string from the file
+            </summary>
+            <param name="key">The value pair key</param>
+            <returns></returns>
+        </member>
+        <member name="M:Helper.IniFile.GetValueInt(System.String)">
+            <summary>
+            Read a integer from the file
+            </summary>
+            <param name="key">The key of the value pair</param>
+            <returns></returns>
+        </member>
+        <member name="M:Helper.IniFile.GetValueDbl(System.String)">
+            <summary>
+            Read a double from the file
+            Fractions must be stored with decimal point, e.g. "3.1415"
+            </summary>
+            <param name="key">The key of the value pair</param>
+            <returns></returns>
+        </member>
+        <member name="M:Helper.IniFile.GetValueDt(System.String)">
+            <summary>
+            Read a datetime from the file
+            The date must be stored as yyyy-mm-dd hh24:mi:ss, time part optional
+            </summary>
+            <param name="key">The key of the value pair</param>
+            <returns></returns>
+        </member>
+        <member name="M:Helper.IniFile.GetValueBool(System.String)">
+            <summary>
+            Read a bool from the file
+            The data must be stored as a bool text representation, e.g. "1" or "True"
+            </summary>
+            <param name="key">The key of the value pair</param>
+            <returns></returns>
+        </member>
+        <member name="M:Helper.IniFile.SetValueStr(System.String,System.String)">
+            <summary>
+            Write a string to the file
+            </summary>
+            <param name="key">The key of the value pair</param>
+            <param name="value">The value of the value pair</param>
+        </member>
+        <member name="M:Helper.IniFile.SetValueInt(System.String,System.Int32)">
+            <summary>
+            Write a integer to the file
+            </summary>
+            <param name="key">The key of the value pair</param>
+            <param name="value">The value of the value pair</param>
+        </member>
+        <member name="M:Helper.IniFile.SetValueDbl(System.String,System.Double)">
+            <summary>
+            Write a double to the file
+            Fractions are stored with decimal point, e.g. "3.1415"
+            </summary>
+            <param name="key">The key of the value pair</param>
+            <param name="value">The value of the value pair</param>
+        </member>
+        <member name="M:Helper.IniFile.SetValueDt(System.String,System.DateTime)">
+            <summary>
+            Write a datetime to the file
+            Stored as yyyy-mm-dd hh24:mi:ss
+            </summary>
+            <param name="key">The key of the value pair</param>
+            <param name="value">The value of the value pair</param>
+        </member>
+        <member name="M:Helper.IniFile.SetValueBool(System.String,System.Boolean)">
+            <summary>
+            Stores a bool to the file
+            Stored as "True" or "False"
+            </summary>
+            <param name="key">The key of the value pair</param>
+            <param name="value">The value of the value pair</param>
+        </member>
+        <member name="M:Helper.IniFile.DeleteValue(System.String)">
+            <summary>
+            Removes a value pair from the file 
+            </summary>
+            <param name="key">The key of the value pair</param>
+        </member>
+        <member name="M:Helper.IniFile.DeleteValue(System.String,System.Boolean@)">
+            <summary>
+            Removes a value pair from the file 
+            Returns true or false to indicate if the deleted key actually existed in the file
+            </summary>
+            <param name="key">The key of the value pair</param>
+            <param name="deleted">Returns true if the key was deleted or false if the key did not exist and was therefore not deleted</param>
+        </member>
+        <member name="T:Helper.DateTimeExtension">
+            <summary>
+            Extensions for DataTime 
+            </summary>
+        </member>
+        <member name="M:Helper.DateTimeExtension.FirstDateOfWeek(System.DateTime,System.DayOfWeek)">
+            <summary>
+            Returns the date of the first day of week dt is in
+            </summary>
+            <param name="dt">The extended DateTime</param>
+            <param name="startOfWeek">Defines wich days is the first day of the week</param>
+        </member>
+        <member name="M:Helper.DateTimeExtension.LastDateOfWeek(System.DateTime,System.DayOfWeek)">
+            <summary>
+            Returns the date of the last day of week dt is in
+            </summary>
+            <param name="dt">The extended DateTime</param>
+            <param name="startOfWeek">Defines wich days is the first day of the week</param>
+        </member>
+        <member name="M:Helper.DateTimeExtension.FirstDayOfWeekOffset(System.DateTime,System.DayOfWeek)">
+            <summary>
+            Returns the number of days from startOfWeek to dt
+            E.g. Returns 0 if startOfWeek = Monday and dt is a Monday
+                 Returns 3 if startOfWeek = Monday and dt is a Thursday
+            </summary>
+            <param name="dt">The extended DateTime</param>
+            <param name="startOfWeek">Defines wich days is the first day of the week</param>
+        </member>
+        <member name="M:Helper.DateTimeExtension.LastDayOfWeekOffset(System.DateTime,System.DayOfWeek)">
+            <summary>
+            Returns the number of days left of a week from dt
+            E.g. Returns 0 if startOfWeek = Monday and dt is a Sunday
+                 Returns 3 if startOfWeek = Monday and dt is a Thursday
+            </summary>
+            <param name="dt">The extended DateTime</param>
+            <param name="startOfWeek">Defines wich days is the first day of the week</param>
+        </member>
+        <member name="M:Helper.DateTimeExtension.GetISO8601Week(System.DateTime)">
+            <summary>
+            Returns the ISO8601 week number of the week dt is in
+            </summary>
+            <param name="dt">The extended DateTime</param>
+        </member>
+        <member name="M:Helper.DateTimeExtension.FirstDateOfYear(System.DateTime)">
+            <summary>
+            Returns the date of the first day of the year dt is in
+            </summary>
+            <param name="dt">The extended DateTime</param>
+        </member>
+        <member name="M:Helper.DateTimeExtension.LastDateOfYear(System.DateTime)">
+            <summary>
+            Returns the date of the last day of the year dt is in
+            </summary>
+            <param name="dt">The extended DateTime</param>
+        </member>
+        <member name="M:Helper.DateTimeExtension.FirstDateOfMonth(System.DateTime)">
+            <summary>
+            Returns the date of the first day of month dt is in
+            </summary>
+            <param name="dt">The extended DateTime</param>
+        </member>
+        <member name="M:Helper.DateTimeExtension.LastDateOfMonth(System.DateTime)">
+            <summary>
+            Returns the date of the last day of month dt is in
+            </summary>
+            <param name="dt">The extended DateTime</param>
+        </member>
+        <member name="M:Helper.DateTimeExtension.ToDate(System.DateTime)">
+            <summary>
+            Returns the date part of dt
+            </summary>
+            <param name="dt">The extended DateTime</param>
+        </member>
+        <member name="M:Helper.DateTimeExtension.ToHour(System.DateTime)">
+            <summary>
+            Returns the data and hour part of dt
+            </summary>
+            <param name="dt">The extended DateTime</param>
+        </member>
+        <member name="M:Helper.DateTimeExtension.ToMinute(System.DateTime)">
+            <summary>
+            Returns the data, hour and minute part of dt
+            </summary>
+            <param name="dt">The extended DateTime</param>
+        </member>
+        <member name="M:Helper.DateTimeExtension.ToSecond(System.DateTime)">
+            <summary>
+            Returns the data, hour, minute and second part of dt
+            </summary>
+            <param name="dt">The extended DateTime</param>
+        </member>
+        <member name="T:Helper.DrawingControl">
+            <summary>
+            Controls screen drawing
+            </summary>
+        </member>
+        <member name="M:Helper.DrawingControl.SuspendDrawing(System.Windows.Forms.Control)">
+            <summary>
+            Suspends screen refresh of <paramref name="parent"/>
+            </summary>
+        </member>
+        <member name="M:Helper.DrawingControl.ResumeDrawing(System.Windows.Forms.Control)">
+            <summary>
+            Resumes screen refresh of <paramref name="parent"/>
+            </summary>
+        </member>
+        <member name="M:Helper.DrawingControl.IsOnScreen(System.Windows.Forms.Form)">
+            <summary>
+            Indicates if <paramref name="form"/> is entirely contained within the limits of the screen
+            </summary>
+            <returns>
+            Returns true if <paramref name="form"/> is entirely contained within the limits of the screen
+            </returns>
+        </member>
+        <member name="T:Helper.LogFile">
+            <summary>
+            Manages a textfile for logging purposes
+            </summary>
+        </member>
+        <member name="M:Helper.LogFile.#ctor(System.String)">
+            <summary>
+            Constructor opening the file
+            </summary>
+            <param name="fileName">The name of the file, will be created if missing</param>
+        </member>
+        <member name="M:Helper.LogFile.#ctor(System.String,System.Text.Encoding)">
+            <summary>
+            Constructor opening the file and setting the encoding used
+            </summary>
+            <param name="fileName"></param>
+            <param name="encoding"></param>
+        </member>
+        <member name="M:Helper.LogFile.Debug(System.String)">
+            <summary>
+            Write a debug message to the file
+            </summary>
+            <param name="message">The message</param>
+        </member>
+        <member name="M:Helper.LogFile.Trace(System.Exception)">
+            <summary>
+            Write a stacktrace to the file
+            </summary>
+            <param name="e">Exception to trace</param>
+        </member>
+        <member name="M:Helper.LogFile.Log(System.String)">
+            <summary>
+            Write a message to the file
+            </summary>
+            <param name="message"></param>
+        </member>
+        <member name="T:Helper.ObjectExtensions">
+            <summary>
+            Extensions for Object
+            </summary>
+        </member>
+        <member name="M:Helper.ObjectExtensions.NVL(System.Object,System.Object)">
+            <summary>
+            Returns replacment object if if null
+            </summary>
+            <param name="obj">The extended Object</param>
+            <param name="repl">The replacement Object</param>
+            <returns></returns>
+        </member>
+        <member name="M:Helper.StringExtensions.InitCap(System.String)">
+            <summary>
+            Converts str to initcap
+            </summary>
+            <param name="str">The extended String</param>
+            <returns></returns>
+        </member>
+        <member name="M:Helper.StringExtensions.ToUpper(System.String)">
+            <summary>
+            Converts str to upper case
+            </summary>
+            <param name="str">The extended String</param>
+            <returns></returns>
+        </member>
+        <member name="M:Helper.StringExtensions.ToLower(System.String)">
+            <summary>
+            Converts str to lower case
+            </summary>
+            <param name="str">The extended String</param>
+            <returns></returns>
+        </member>
+        <member name="M:Helper.StringExtensions.NullIfEmpty(System.String)">
+            <summary>
+            Returns NULL if empty, null or blank
+            </summary>
+            <param name="str">The extended String</param>
+            <returns></returns>
+        </member>
+        <member name="M:Helper.StringExtensions.IsNull(System.String)">
+            <summary>
+            Returns empty string "" if null
+            </summary>
+            <param name="str">The extended String</param>
+            <returns></returns>
+        </member>
+        <member name="M:Helper.StringExtensions.NVL(System.String,System.String)">
+            <summary>
+            Returns replacmentstring if if null or empty
+            </summary>
+            <param name="str">The extended String</param>
+            <param name="repl">The replacement String</param>
+            <returns></returns>
+        </member>
+        <member name="T:ExceptionExtensions">
+            <summary>
+             Extension methods for Exception class.
+            </summary>
+        </member>
+        <member name="M:ExceptionExtensions.ToLogString(System.Exception,System.String)">
+            <summary>
+             Provides full stack trace for the exception that occurred.
+            </summary>
+            <param name="exception">Exception object.</param>
+            <param name="environmentStackTrace">Environment stack trace, for pulling additional stack frames.</param>
+        </member>
+        <member name="M:ExceptionExtensions.GetStackTraceLines(System.String)">
+            <summary>
+             Gets a list of stack frame lines, as strings.
+            </summary>
+            <param name="stackTrace">Stack trace string.</param>
+        </member>
+        <member name="M:ExceptionExtensions.GetUserStackTraceLines(System.String)">
+            <summary>
+             Gets a list of stack frame lines, as strings, only including those for which line number is known.
+            </summary>
+            <param name="fullStackTrace">Full stack trace, including external code.</param>
+        </member>
+    </members>
+</doc>
